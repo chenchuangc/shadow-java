@@ -1,0 +1,66 @@
+group 'weinong'
+version '1.0-SNAPSHOT'
+apply plugin: 'java'
+apply plugin: 'maven'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    maven {
+        url 'http://repo1.maven.org/maven2/'
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility =1.8
+
+
+dependencies {
+
+
+    compile  'com.alibaba:fastjson:1.2.16'
+	
+	compile 'org.bouncycastle:bcprov-jdk15on:1.52'
+
+	compile 'com.googlecode.json-simple:json-simple:1.1.1'
+
+
+
+}
+
+sourceSets {
+
+    main.java.srcDirs = ['src/main/java']
+    main.resources.srcDirs = ['src/main/resources']
+    test.java.srcDirs = ['src/main/test']
+    test.resources.srcDirs = ['conf']
+
+}
+
+task runnableJar(type: Jar){
+
+    manifest{
+        attributes 'Implementation-Version': version,
+                'Main-Class':'com.stfl.Main'
+    }
+    baseName = project.name + '_run'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+//
+
+
+
+/*task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Version': version,
+                'Main-Class': 'com.weinong.stamp.main.Main'
+    }
+    baseName = project.name + '_process'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}*/
+
+//tasks.withType(Compile) {
+//    options.encoding = "UTF-8"
+//}

@@ -1,0 +1,10 @@
+{
+  "password": "teddysun.com",
+  "localPort": 1080,
+  "method": "aes-256-cfb",
+  "logLevel": "INFO",
+  "remotePort": 8989,
+  "proxyType": "http",
+  "localIpAddress": "127.0.0.1",
+  "remoteIpAddress": "107.150.96.225"
+}
